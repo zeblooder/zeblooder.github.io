@@ -1,10 +1,10 @@
-title: Hexo
+title: 郑戈涵的blog
 subtitle: ''
 description: ''
 keywords: null
-author: John Doe
-language: en
-timezone: ''
+author: 郑戈涵
+language: zh-CN
+timezone: 'Asia/Shanghai'
 url: http://example.com
 permalink: ':year/:month/:day/:title/'
 permalink_defaults: null

@@ -1,38 +1,9 @@
 ---
 title: Hello World
+date: 2021-12-12 22:09:13
+tags: [随笔]
 ---
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
-## Quick Start
-
-### Create a new post
-
-``` bash
-$ hexo new "My New Post"
-```
-
-More info: [Writing](https://hexo.io/docs/writing.html)
-
-### Run server
-
-``` bash
-$ hexo server
-```
-
-More info: [Server](https://hexo.io/docs/server.html)
-
-### Generate static files
-
-``` bash
-$ hexo generate
-```
-
-More info: [Generating](https://hexo.io/docs/generating.html)
-
-### Deploy to remote sites
-
-``` bash
-$ hexo deploy
-```
-
-More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)
+是时候建个blog了，参考的[2021最全hexo搭建博客+matery美化+使用](https://www.bilibili.com/read/cv12633102)，写的比较详细。踩的坑都在main和master分支上。以后大概主要写学习相关的文章，记录一下免得忘记。
+顺便记录一下config的设置
+https://hexo.io/zh-cn/docs/configuration.html
