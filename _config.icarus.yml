@@ -45,7 +45,7 @@ head:
         type: blog
         # Page URL (og:url) (optional)
         # You should leave this blank for most of the time
-        url: 
+        url: https://zeblooder.github.io/
         # Page cover (og:image) (optional)
         # You should leave this blank for most of the time
         image: 
@@ -54,7 +54,7 @@ head:
         site_name: 
         # Page author (article:author) (optional)
         # You should leave this blank for most of the time
-        author: 
+        author: 郑戈涵
         # Page description (og:description) (optional)
         # You should leave this blank for most of the time
         description: 
@@ -223,24 +223,24 @@ widgets:
         position: left
         type: profile
         # Author name
-        author: Your name
+        author: 郑戈涵
         # Author title
-        author_title: Your title
+        author_title: SYSU CS Undergraduate
         # Author's current location
-        location: Your location
+        location: 深圳
         # URL or path to the avatar image
-        avatar: 
+        avatar: https://images-na.ssl-images-amazon.com/images/I/81N4+HZUPvL._CR1470,250,720,1280_.jpg
         # Whether show the rounded avatar image
         avatar_rounded: false
         # Email address for the Gravatar
         gravatar: 
         # URL or path for the follow button
-        follow_link: 'https://github.com/ppoffice'
+        follow_link: 'https://github.com/zeblooder'
         # Links to be shown on the bottom of the profile widget
         social_links:
             Github:
                 icon: fab fa-github
-                url: 'https://github.com/ppoffice'
+                url: 'https://github.com/zeblooder'
             Facebook:
                 icon: fab fa-facebook
                 url: 'https://facebook.com'
