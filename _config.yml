@@ -104,4 +104,4 @@ theme: landscape
 deploy:
   type: git
   repository: https://github.com/zeblooder/zeblooder.github.io.git
-  branch: master
+  branch: main
