@@ -54,7 +54,7 @@ head:
         site_name: 
         # Page author (article:author) (optional)
         # You should leave this blank for most of the time
-        author: 郑戈涵
+        author: Zheng Gehan
         # Page description (og:description) (optional)
         # You should leave this blank for most of the time
         description: 
@@ -223,11 +223,11 @@ widgets:
         position: left
         type: profile
         # Author name
-        author: 郑戈涵
+        author: Zheng Gehan
         # Author title
         author_title: SYSU CS Undergraduate
         # Author's current location
-        location: 深圳
+        location: shenzhen
         # URL or path to the avatar image
         avatar: https://images-na.ssl-images-amazon.com/images/I/81N4+HZUPvL._CR1470,250,720,1280_.jpg
         # Whether show the rounded avatar image
