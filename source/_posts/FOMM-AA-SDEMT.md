@@ -1,5 +1,5 @@
 ---
-title: 三篇图像动画论文的比较
+title: 三篇图像动画论文的比较(FOMM,AA,SDEMT)
 mathjax: true
 date: 2021-12-14 10:45:19
 tags: [图像动画]
