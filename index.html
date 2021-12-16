@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Zheng Gehan&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Zheng Gehan&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Zheng Gehan&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Zheng Gehan&#039;s blog"><meta property="og:url" content="https://zeblooder.github.io/"><meta property="og:site_name" content="Zheng Gehan&#039;s blog"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://zeblooder.github.io/img/og_image.png"><meta property="article:author" content="Zheng Gehan"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com"},"headline":"Zheng Gehan's blog","image":["http://example.com/img/og_image.png"],"author":{"@type":"Person","name":"Zheng Gehan"},"publisher":{"@type":"Organization","name":"Zheng Gehan's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":""}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Zheng Gehan&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-14T03:15:01.000Z" title="2021/12/14 上午11:15:01">2021-12-14</time>发表</span><span class="level-item"><time dateTime="2021-12-16T15:52:38.450Z" title="2021/12/16 下午11:52:38">2021-12-16</time>更新</span><span class="level-item">11 分钟读完 (大约1585个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/14/JOKR-report/">JOKR笔记</a></h1><div class="content"><h2 id="JOKR-Joint-Keypoint-Representation-for-Unsupervised-Cross-Domain-Motion-Retargeting"><a href="#JOKR-Joint-Keypoint-Representation-for-Unsupervised-Cross-Domain-Motion-Retargeting" class="headerlink" title="JOKR: Joint Keypoint Representation for Unsupervised Cross-Domain Motion Retargeting"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.09679">JOKR: Joint Keypoint Representation for Unsupervised Cross-Domain Motion Retargeting</a></h2><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>原视频和目标视频形状不同时，之前专注于特定对象先验的方法就会失败，作者提出联合关键点表达可以捕捉原视频和目标视频都有的动作，而且不需要物体先验或者数据采集。使用domain confusion项有利于对于两个domain的动作的一致的部分的解耦，可区分的外观和动作使得捕捉其中一个视频动作同时描绘另一个视频的风格的视频得以生成。</p>
+<p>为处理物体有不同比例缩放或者不同方向的情形，作者应用了JOKR之间的仿射变换。这使得表达具有仿射不变性。</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>目标视频使用的外观来自视频A，动作来自视频B，共$N_a$和$N_b$帧。分割图$s_{a,i},s_{b,i}$是给定的数据，或者是通过现成的图像分割网络得到。</p>
+<h4 id="形状不变表达"><a href="#形状不变表达" class="headerlink" title="形状不变表达"></a>形状不变表达</h4><p>使用JOKR作为瓶颈。用无监督关键点提取器E，提取K个关键点$k_{a,i}$，提取器采用U-Net的做法，提取热力图$h_{a,i}$（a代表视频，i代表帧序号）来确定关键点位置。</p>
+<p>为做到几何和外观的解耦，生成过程有两步：</p>
+<ol>
+<li>给定$h_{a,i}$，生成器$G_{A}$被训练来输出一个同时对应提取到的关键点和物体形状的剪影。为减少参数数量，$G_{A},G_{B}$共用权重，除了最后一层。类似的，E也被用于两个视频。给定帧$a_i,b_j$，生成的剪影要最小化这个MSE loss。</li>
+</ol>
+<script type="math/tex; mode=display">
+\mathcal{L}_{seg}=\sum_{i=0}^{N_A-1}||G_A(E(a_i))-s_{a,i}||_2+\sum_{j=0}^{N_B-1}||G_B(E(b_i))-s_{b,j}||_2</script><p>训练生成器$R_A,R_B$来转换得到的分割图到原图上，因此添加了纹理。重建和感知损失为：</p>
+<script type="math/tex; mode=display">
+\begin{gathered}
+\mathcal{L}_{L 1}=\sum_{i=0}^{N_{A}-1}\left\|R_{A}\left(G_{A}\left(E\left(a_{i}\right)\right)\right)-a_{i}\right\|_{1}+\sum_{j=0}^{N_{B}-1}\left\|R_{A}\left(G_{B}\left(E\left(b_{j}\right)\right)\right)-b_{j}\right\|_{1} \\
+\mathcal{L}_{\text {LPIPS }}=\sum_{i=0}^{N_{A}-1}\left\|\mathcal{F}\left(R_{A}\left(G_{A}\left(E\left(a_{i}\right)\right)\right)\right)-\mathcal{F}\left(a_{i}\right)\right\|_{2}+\sum_{j=0}^{N_{B}-1}\left\|\mathcal{F}\left(R_{A}\left(G_{B}\left(E\left(b_{j}\right)\right)\right)\right)-\mathcal{F}\left(b_{j}\right)\right\|_{2}
+\end{gathered}</script><p>$\mathcal{F}$是特征提取器。</p>
+<h4 id="共享表达"><a href="#共享表达" class="headerlink" title="共享表达"></a>共享表达</h4><p>AB视频描绘的物体可能来自不同domain，所以提取的关键点对于各自的视频可能有不同的语义信息。因此作者强制编码的关键点来自共享的分布，从而鼓励关键点捕捉同时来自两个视频的动作。AB的特定风格在生成器的权重里编码。为施加共享的分布，作者使用domain confusion loss。</p>
+<p>此外还用一个判别器来区分A和B的domain的关键点，编码器被训练来欺骗他。</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{\mathrm{DC}}=\sum_{i=0}^{N_{A}-1} \ell_{\text {bce }}\left(D\left(k_{a, i}\right), 1\right)+\sum_{j=0}^{N_{B}-1} \ell_{\text {bce }}\left(D\left(k_{b, j}\right), 1\right)</script><p>$\ell_{bce}=-(q\log(p)+(1-q)\log(1-p))$是二元交叉熵损失函数。</p>
+<p>关键点提取器尝试使得关键点分布无法区分，同时判别器做对抗它的训练：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{\mathrm{D}}=\sum_{i=0}^{N_{A}-1} \ell_{\text {bce }}\left(D\left(k_{a, i}\right), 0\right)+\sum_{j=0}^{N_{B}-1} \ell_{\text {bce }}\left(D\left(k_{b, j}\right), 1\right)</script><h4 id="时间连贯性"><a href="#时间连贯性" class="headerlink" title="时间连贯性"></a>时间连贯性</h4><p>为保证生成的视频是时间连贯的，即生成的动作平滑无抖动。应用时间正则化在生成的关键点上，最小化相邻帧之间的关键点的距离。</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{\mathrm{tmp}}=\sum_{i=0}^{N_{A}-1}\left\|k_{a, i}-k_{a, i+1}\right\|_{2}+\sum_{j=0}^{N_{B}-1}\left\|k_{b, j}-k_{b, j+1}\right\|_{2}</script><p>因为物体有大动作的时候关键点的含义可能会变化（比如由后腿变成尾巴），所以作者应用随机仿射变换，比较变换后的关键点和变换后的图像提取出的关键点，来保证生成的关键点对任意仿射变换是等变的（equivariant）。即保证了每个关键点语义的一致性，对于一个仿射变换T，等变loss的公式是：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{\mathrm{eq}}=\sum_{i=0}^{N_{A}-1}\left\|T\left(E\left(a_{i}\right)\right)-E\left(T\left(a_{i}\right)\right)\right\|_{1}+\sum_{j=0}^{N_{B}-1}\left\|T\left(E\left(b_{j}\right)\right)-E\left(T\left(b_{j}\right)\right)\right\|_{1}</script><h4 id="关键点正则化"><a href="#关键点正则化" class="headerlink" title="关键点正则化"></a>关键点正则化</h4><p>关键点们可能会缩成一个点，因此有额外的两个损失项。</p>
+<p>首先惩罚两个过近的关键点：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{\mathrm{sep}}=\frac{1}{K^{2}} \sum_{\ell=0}^{K-1} \sum_{\ell \neq r}\left(\sum_{i=0}^{N_{A}-1} \max \left(0, \delta-\left\|k_{a, i}^{\ell}-k_{a, i}^{r}\right\|^{2}\right)+\sum_{j=0}^{N_{B}-1} \max \left(0, \delta-\left\|k_{b, j}^{\ell}-k_{b, j}^{r}\right\|^{2}\right)\right)</script><p>然后用剪影的损失鼓励关键点待在物体上：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{\mathrm{sill}}=\frac{1}{K} \sum_{\ell=0}^{K-1}\left(\sum_{i=0}^{N_{A}-1}-\log \sum_{u, v} s_{a, i}(u, v) H_{a, i}^{\ell}(u, v)+\sum_{j=0}^{N_{B}-1}-\log \sum_{u, v} s_{b, j}(u, v) H_{b, j}^{\ell}(u, v)\right)</script><h4 id="两步优化"><a href="#两步优化" class="headerlink" title="两步优化"></a>两步优化</h4><p>大部分损失和形状有关，和纹理无关，所以可以用两步优化目标函数。首先用$\mathcal{L}_D$训练判别器，同时训练E，$G_A,G_B$。第二步训练$R_A,R_B$。</p>
+<h4 id="增强"><a href="#增强" class="headerlink" title="增强"></a>增强</h4><p>数据有限时可能导致mode collapse。所以作者用随机仿射变换进行增强。因为保留背景是必要的，而这些增强可能会给生成的帧带来伪影（artifact）,所以这些增强直接作用在关键点上，在其传给判别器之前。</p>
+<h3 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h3><p><img src="../images/image-20210926215443279.png" alt="网络结构"></p>
+<p>得到E,T,G,R之后，用下面的公式得到结果：</p>
+<script type="math/tex; mode=display">
+a b_{j}=R_{A}\left(G_{A}\left(T\left(E\left(b_{j}\right)\right)\right)\right)</script><p>即有a的外观b的动作的第j帧。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-14T02:45:19.000Z" title="2021/12/14 上午10:45:19">2021-12-14</time>发表</span><span class="level-item"><time dateTime="2021-12-16T15:52:38.450Z" title="2021/12/16 下午11:52:38">2021-12-16</time>更新</span><span class="level-item">11 分钟读完 (大约1665个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/14/FOMM-AA-SDEMT/">三篇图像动画论文的比较(FOMM,AA,SDEMT)</a></h1><div class="content"><p>FOMM和AA是很经典的论文，都来自作者Aliaksandr Siarohin，最近有一篇新论文在此基础上做了较大的改进，给出的效果看起来也很好，因此总结三个论文的内容。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2003.00196">FOMM</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2104.11280">AA</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2110.04658">Self-appearance-aided Differential Evolution for Motion Transfer</a></li>
+</ul>
+<h2 id="FOMM"><a href="#FOMM" class="headerlink" title="FOMM"></a>FOMM</h2><h3 id="motion-representation"><a href="#motion-representation" class="headerlink" title="motion representation"></a>motion representation</h3><p>包含稀疏动作估计和稠密动作估计。</p>
+<h4 id="稀疏动作"><a href="#稀疏动作" class="headerlink" title="稀疏动作"></a>稀疏动作</h4><p>使用$\mathcal{T}_{S\leftarrow R}(p_k),\mathcal{T}_{D\leftarrow R}(p_k)$来计算D中每个关键点处到S的仿射变换，具体方法是用泰勒展开，然后将涉及到$\mathcal{T}_{S\leftarrow R}(p_k),\mathcal{T}_{D\leftarrow R}(p_k)$之外的变化都用$\mathcal{T}_{S\leftarrow R}(p_k),\mathcal{T}_{D\leftarrow R}(p_k)$来代替。</p>
+<script type="math/tex; mode=display">
+\mathcal{T_{S\leftarrow D}}(z) \approx \mathcal{T_{S\leftarrow R}}(p_k) + J_k(z-\mathcal{T_{D\leftarrow R}}(p_k))</script><h4 id="稠密动作"><a href="#稠密动作" class="headerlink" title="稠密动作"></a>稠密动作</h4><p>用$\mathcal{T}_{S\leftarrow R}(p_k),\mathcal{T}_{D\leftarrow R}(p_k)$的高斯分布之差计算<strong>热力图</strong>来找出变换发生的位置。对S进行稀疏动作的逆变换，得到K个结果(每个关键点一个变换)。然后将热力图和S变换结果一起喂给U-net，预测K+1个mask作为每个关键点上稀疏动作的权值，多出的一个mask用于处理背景。稠密动作就是各个关键点的稀疏动作的加权和。</p>
+<h3 id="extraction"><a href="#extraction" class="headerlink" title="extraction"></a>extraction</h3><p>使用u-net分别提取参考帧到两个输入图像的仿射变换$\mathcal{T}_{S\leftarrow R}(p_k),\mathcal{T}_{D\leftarrow R}(p_k)$，每个关键点对应一个变换。还额外输出一个遮挡图的通道。</p>
+<h3 id="transfer"><a href="#transfer" class="headerlink" title="transfer"></a>transfer</h3><p>用稠密动作warp输入图像，然后用遮挡图计算阿达马乘积，最后通过一个解码器处理得到最终结果。</p>
+<h2 id="Articulated-Animation"><a href="#Articulated-Animation" class="headerlink" title="Articulated Animation"></a>Articulated Animation</h2><h3 id="motion-representation-1"><a href="#motion-representation-1" class="headerlink" title="motion representation"></a>motion representation</h3><p>包含稀疏动作估计和稠密动作估计。论文和代码里<strong>热力图</strong>的概念被重复用在两个地方，一个是指输入图像提取出来的热力图，相当于特征点，另一个是稠密动作里用高斯分布得到的热力图，用于找出发生变换的位置。</p>
+<h4 id="稀疏动作-1"><a href="#稀疏动作-1" class="headerlink" title="稀疏动作"></a>稀疏动作</h4><p>使用PCA处理热力图的协方差得到仿射变换的线性变换的部分，热力图的均值作为仿射变换的偏移量，总共5个自由度，加上背景的恒等变换就得到稀疏动作。</p>
+<h4 id="稠密动作-1"><a href="#稠密动作-1" class="headerlink" title="稠密动作"></a>稠密动作</h4><p>和FOMM的做法完全一样（包括使用的神经网络结构），稠密动作就是各个关键点的稀疏动作的加权和。</p>
+<h3 id="extraction-1"><a href="#extraction-1" class="headerlink" title="extraction"></a>extraction</h3><p>使用U-net结构提取输入图像的特征图，经过一层卷积和softmax，得到热力图。</p>
+<h3 id="transfer-1"><a href="#transfer-1" class="headerlink" title="transfer"></a>transfer</h3><p>和FOMM一样。</p>
+<h2 id="Self-appearance-aided-Differential-Evolution-for-Motion-Transfer"><a href="#Self-appearance-aided-Differential-Evolution-for-Motion-Transfer" class="headerlink" title="Self-appearance-aided Differential Evolution for Motion Transfer"></a>Self-appearance-aided Differential Evolution for Motion Transfer</h2><h3 id="motion-representation-2"><a href="#motion-representation-2" class="headerlink" title="motion representation"></a>motion representation</h3><p>计算关键点的差值作为神经网络的输入，回归出系数来加权关键点的差值作为稀疏动作，同时作为微分方程</p>
+<script type="math/tex; mode=display">
+\frac{d \mathscr{T}}{d t}=\mathscr{F}_{E}\left(\mathscr{T}^{(t)}, t\right), \quad \text { for } t \in[0,1]</script><p>的初值$\mathscr{F}^{(0)}$：，两侧积分就得到稠密动作。</p>
+<h3 id="extraction-2"><a href="#extraction-2" class="headerlink" title="extraction"></a>extraction</h3><p>用编码器解码器网络获得S和D的关键点。</p>
+<h3 id="transfer-2"><a href="#transfer-2" class="headerlink" title="transfer"></a>transfer</h3><ol>
+<li><p>用特征提取网络提取输入图像的特征$\mathbb{F}_{\mathbb{S}}$。</p>
+</li>
+<li><p>将$\mathbb{F}_{\mathbb{S}}$用稠密动作进行扭曲得到$\widetilde{\mathbb{F}}_{\mathbb{S D}}$。</p>
+</li>
+<li><p>扭曲后用$\mathscr{F}_A$来预测self-appearance流变形场$\mathscr{T}_{App}$，$\mathscr{T}_{App}$是用来扭曲原区域到缺失区域的（流）特征的。</p>
+</li>
+<li><p>计算$\mathbb{F}_{A p p}=\mathscr{T}_{A p p} \circ \widetilde{\mathbb{F}}_{\mathbb{S D}}$。</p>
+</li>
+<li><p>用生成器$\mathscr{F}_G$为N个不同视角的view输出置信度掩码$C^{(j)}$，每个视角的置信度掩码各自进行归一化：$\widetilde{C}^{(j)}(\mathbf{x})=C^{(j)}(\mathbf{x}) / \sum_{j=0}^{N} C^{(j)}(\mathbf{x})$。</p>
+</li>
+<li><p>用置信度掩码对$\mathbb{F}_{A p p} ,\widetilde{\mathbb{F}}_{\mathbb{S D}}$分别计算加权和：</p>
+<script type="math/tex; mode=display">
+\overline{\mathbb{F}}_{A p p}=\sum_{j=1}^{N} \widetilde{C}^{(j)} \mathbb{F}_{A p p}^{(j)}, \quad \overline{\widetilde{\mathbb{F}}}_{\mathbb{D}}=\sum_{j=1}^{N} \widetilde{C}^{(j)} \widetilde{\mathbb{F}}_\mathbb{SD}^{(j)}</script></li>
+<li><p>只有一个视图时，用$\mathbb{F}_{A p p} ,\widetilde{\mathbb{F}}_{\mathbb{S D}}$连接起来喂给$\mathscr{F}_G$的编码器部分用于生成图像。有多个时，用加权后的连接起来喂给$\mathscr{F}_G$的编码器部分用于生成图像。</p>
+</li>
+</ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="差别"><a href="#差别" class="headerlink" title="差别"></a>差别</h2><ol>
+<li>FOMM和Articulated Animation是同一个人的工作，只有稀疏动作表示是不一样的，提取特征里后者只是多了生成热力图的步骤，Articulated Animation简化了计算稀疏动作的过程，用PCA方法和热力图的均值直接获得仿射变换，非常简洁。</li>
+<li>Self-appearance-aided Differential Evolution for Motion Transfer使用解微分方程的方法计算动作，原因是neural-ODEs已被证明能够捕捉复杂的变换，<strong>可微动作演化</strong>可以泛化稀疏动作的预测（我觉得意思是不会因为不同对象或者数据集效果差别很大），同时避免雅克比矩阵和SVD的大量计算。</li>
+</ol>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol>
+<li>Articulated Animation认为PCA可以更好的描述动作，所以用PCA来获得仿射变换矩阵的线性部分的参数。</li>
+<li>Self-appearance-aided Differential Evolution for Motion Transfer 里指出它的方法泛化了FOMM，AA，Monkey-Net方法。</li>
+<li>Self-appearance-aided Differential Evolution for Motion Transfer 在CSIM上与FOMM,AA拉开很大的距离。即该方法相比FOMM,AA能更好的保留原图像的特征。</li>
+<li>Self-appearance-aided Differential Evolution for Motion Transfer 泛化能力很好，在A训练集上训练后，在B训练集上依然效果很好。比如卡通动画生成中，该论文的方法能很好的保留个体特征，而FOMM和AA很差。</li>
+</ol>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ol>
+<li>FOMM在提取稀疏动作的时候用了泰勒展开，非常繁琐。</li>
+<li>Articulated Animation里指出FOMM这类用关键点的方法在处理物体边界内的动作会出现不真实的效果。</li>
+<li>Articulated Animation认为该论文的方法的泛化能力较弱，生成非活物的动画有难度，也就是说生成素描动画效果不会很好。</li>
+<li>Self-appearance-aided Differential Evolution for Motion Transfer的网络结构太大，训练时间久。</li>
+</ol>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-12T14:09:13.000Z" title="2021/12/12 下午10:09:13">2021-12-12</time>发表</span><span class="level-item"><time dateTime="2021-12-16T15:52:38.451Z" title="2021/12/16 下午11:52:38">2021-12-16</time>更新</span><span class="level-item">1 分钟读完 (大约170个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/12/hello-world/">Hello World</a></h1><div class="content"><p>是时候建个blog了，参考的<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12633102">2021最全hexo搭建博客+matery美化+使用</a>，写的比较详细。踩的坑都在main和master分支上。以后大概主要写学习相关的文章，记录一下免得忘记。<br>顺便记录一下config的设置<br><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration.html">https://hexo.io/zh-cn/docs/configuration.html</a><br>显示latex公式需要修改一些包，参考：<a target="_blank" rel="noopener" href="https://runninggump.github.io/2018/12/05/%E6%88%90%E5%8A%9F%E8%A7%A3%E5%86%B3%E5%9C%A8hexo%E4%B8%AD%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E9%97%AE%E9%A2%98/">成功解决在hexo中无法显示数学公式的问题</a></p>
+</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://images-na.ssl-images-amazon.com/images/I/81N4+HZUPvL._CR1470,250,720,1280_.jpg" alt="Zheng Gehan"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Zheng Gehan</p><p class="is-size-6 is-block">SYSU CS Undergraduate</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>shenzhen</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">2</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/zeblooder" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/zeblooder"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-14T03:15:01.000Z">2021-12-14</time></p><p class="title"><a href="/2021/12/14/JOKR-report/">JOKR笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-14T02:45:19.000Z">2021-12-14</time></p><p class="title"><a href="/2021/12/14/FOMM-AA-SDEMT/">三篇图像动画论文的比较(FOMM,AA,SDEMT)</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-12T14:09:13.000Z">2021-12-12</time></p><p class="title"><a href="/2021/12/12/hello-world/">Hello World</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E5%83%8F%E5%8A%A8%E7%94%BB/"><span class="tag">图像动画</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9A%8F%E7%AC%94/"><span class="tag">随笔</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Zheng Gehan&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2021 Zheng Gehan</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
