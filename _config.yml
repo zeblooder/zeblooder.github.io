@@ -5,8 +5,8 @@ keywords: null
 author: Zheng Gehan
 language: zh-CN
 timezone: 'Asia/Shanghai'
-url: http://example.com
-permalink: ':year/:month/:day/:title/'
+url: https://zeblooder.github.io/
+# permalink: ':year/:month/:day/:title/'
 permalink_defaults: null
 pretty_urls:
   trailing_index: true
@@ -28,7 +28,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
